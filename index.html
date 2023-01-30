@@ -11,39 +11,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100&display=swap"
         rel="stylesheet">
-    <link rel="shortcut icon" href="./src/images/cash_icon-icons.com_51090.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./src/images/favico.png" type="image/x-icon">
     <title>dev.finance$</title>
 </head>
 
 <body>
 
     <header>
-        <h1 class="logo">dev.finance$</h1>
+        <img src="./src/images/LogoFinance.svg" alt="Logotipo DevFinance" aria-hidden="true">
     </header>
     <main class="container">
         <section class="balanco" id="balanco">
-            <h2>Balanço</h2>
+            <h2 class="sr-only">Balanço</h2>
             <div class="entrada cartao">
-                <h3>Entradas</h3>
+                <h3><span>Entradas</span>
+                    <img src="./src/images/Entradas.svg" alt="Imagem de Entradas">
+                </h3>
                 <p>R$ 17.400,00 </p>
             </div>
             <div class="saida cartao">
-                <h3>Saídas</h3>
+                <h3><span>Saídas</span>
+                    <img src="./src/images/Saídas.svg" alt="Imagem de Saídas">
+                </h3>
                 <p>R$ 1.259,00</p>
             </div>
             <div class="total cartao">
-                <h3>Total</h3>
+                <h3><span>Total</span>
+                    <img src="./src/images/Total.svg" alt="Imagem de Total">
+                </h3>
                 <p>R$ 16.141,00</p>
             </div>
         </section>
         <section class="transacoes" id="transacao">
-            <h2>Transações</h2>
+            <h2 class="sr-only">Transações</h2>
+            <a href="#" class="button new">
+                <img class="plus" src="./src/images/plus.svg" alt="Imagem adicionar Nova Transação">
+                <span>Novo Transação</span></a>
             <table id="tabela-dados">
                 <thead>
                     <tr>
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,21 +61,42 @@
                         <td class="descricao">Luz</td>
                         <td class="saida">- R$ 500,00</td>
                         <td class="data">23/01/2023</td>
+                        <td class="remover"><a href="#">
+                                <img src="./src/images/minus.svg" alt="Imagem para remover transação">
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td class="descricao">Desenvolvimento WEB</td>
                         <td class="entrada">R$ 5.000,00</td>
                         <td class="data">23/01/2023</td>
+                        <td class="remover"><a href="#">
+                                <img src="./src/images/minus.svg" alt="Imagem para remover transação">
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td class="descricao">Internet</td>
                         <td class="saida">- R$ 100,00</td>
                         <td class="data">23/01/2023</td>
+                        <td class="remover"><a href="#">
+                                <img src="./src/images/minus.svg" alt="Imagem para remover transação">
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </main>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-content">
+                Oi
+            </div>
+        </div>
+    </div>
+
     <footer class="center">
         <p>dev.finance $</p>
     </footer>
