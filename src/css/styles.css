@@ -1,5 +1,7 @@
 :root{
     --dark-blue: #363f5f;
+    --green: #49AA26;
+    --light-green: #3dd705
 }
 html{
     font-size: 93.75%;
@@ -33,11 +35,12 @@ header .logo{
     margin: auto;
 }
 a{
-    color: #49AA26;
+    color: var(--green);
     text-decoration: none;
+    transition: all ease-in-out .3s;
 }
 a:hover{
-    color: #3dd705; 
+    color: var(--light-green); 
 }
 .button.new{
     display: flex;
@@ -88,7 +91,7 @@ h2{
     margin-top: 1rem;
 }
 .cartao.total{
-    background: #49AA26;
+    background: var(--green);
     color: white;
 }
 
@@ -113,6 +116,8 @@ table td{
 }
 table tbody  tr{
     opacity: .7;
+    transition: all ease-in-out .3s;
+
 }
 table tbody tr:hover{
     opacity: 1;
@@ -161,14 +166,82 @@ MODAL
 
     opacity: 0;
     visibility: hidden;
+    transition: .5s all ease-in-out;
 }
 .modal-overlay.active{
     opacity: 1;
     visibility: visible;
+    margin-top: 0px;
 }
 .modal{
+
     background-color: #f2f0f5;
     padding: 2.4rem;
+    max-width: 500px;
+    width: 90%;
+}
+/* =========================
+FORM
+*/
+.form{
+    max-width: 500px;
+}
+.form h2 {
+    margin-top: 0;
+}
+.form form input {
+    border: none;
+    border-radius: .2rem;
+    padding: .8rem;
+    width: 95%;
+}
+.input-grupo{
+    margin-top: .8rem;
+}
+.input-grupo.acoes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-grupo.acoes .button,
+.input-grupo.acoes button{
+    width: 48%;
+}
+
+.button.cancelar{
+    padding: .25rem;
+    color: #e92929;
+    border: 2px solid #e92929;
+    border-radius: .25rem;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    opacity: .6;
+    transition: all ease-in-out .3s;
+}
+.button.cancelar:hover{
+    opacity: 1;
+}
+button{
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    color: white;
+    background-color: var(--green);
+    cursor: pointer;
+    border-radius: .25rem;
+    margin-left: 1rem;
+    transition: all ease-in-out .3s;
+}
+button:hover{
+    background-color: var(--light-green);
+}
+small{
+    display: block;
+    margin: .5rem 0 0 .2rem;
+    opacity: .4;
 }
 @media (min-width: 800px){
     html{
