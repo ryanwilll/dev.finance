@@ -1,57 +1,48 @@
-const modalOverlay = document.querySelector('.modal-overlay');
+
 
 const Modal = {
     
     toogleModal(){
+        const modalOverlay = document.querySelector('.modal-overlay');
         modalOverlay.classList.toggle("active");
     }
 }
 
 const transacoes = [
     {
-        id: 1,
         descricao: "Água",
         valor: -10000,
         data: '30/01/2023',
     },
     {
-        id: 2,
         descricao: "Energia",
         valor: -10000,
         data: '27/01/2023',
     },
     {
-        id: 3,
         descricao: "Internet",
         valor: -10000,
         data: '24/01/2023',
-    },
-    {
-        id: 4,
-        descricao: "Alimentação",
-        valor: -100000,
-        data: '24/01/2023',
-    },
-    {
-        id: 5,
-        descricao: "Salario",
-        valor: 145000,
-        data: '23/01/2023',
-    },
-    {
-        id: 6,
-        descricao: "Aplicativo",
-        valor: 1000000,
-        data: '31/01/2023',
     }
 ]
 
 const transacao = { 
+    all: transacoes,
+
+    add(Transacao) {
+        transacao.all.push(Transacao)
+        App.recarregar();
+    },
+
+    remove(index) {
+        transacao.all.splice(index,1)
+        App.recarregar();
+    },
     entradas() {
         //Somar as entradas
         let entrada = 0;
 
-        transacoes.forEach(transacao => {
+        transacao.all.forEach(transacao => {
             if (transacao.valor > 0) {
                 entrada += transacao.valor
             }
@@ -63,7 +54,7 @@ const transacao = {
         //Somar as saidas
         let saida = 0;
 
-        transacoes.forEach(transacao => {
+        transacao.all.forEach(transacao => {
             if (transacao.valor < 0) {
                 saida += transacao.valor
             }
@@ -109,11 +100,16 @@ const DOM = {
         document.getElementById("entradasDisplay").innerHTML = Utils.formatacaoMoeda(transacao.entradas()),
         document.getElementById("saidasDisplay").innerHTML = Utils.formatacaoMoeda(transacao.saidas()),
         document.getElementById("total").innerHTML = Utils.formatacaoMoeda(transacao.total())
+    },
+
+    limparTransacoes() {
+        DOM.transcaoesContainer.innerHTML = ""
     }
 }
 
 const Utils = {
-     formatacaoMoeda(valor){
+    
+    formatacaoMoeda(valor){
         const sinal = Number(valor) < 0 ? "-" : ""
 
         valor = String(valor).replace(/\D/g, "")
@@ -124,11 +120,86 @@ const Utils = {
         })
 
         return sinal + valor
-     }
+    },
+    formatarValores(valor){
+        valor = Number(valor) * 100
+
+        return valor
+    },
+     formatarData(data){
+        const SepararData = data.split('-') 
+        return `${SepararData[2]}/${SepararData[1]}/${SepararData[0]}`   
+    },
 }
 
-transacoes.forEach((transacao) => {
-    DOM.addTransacao(transacao)
-});
+const Form = {
 
-DOM.atualizaBalanco()
+    descricao: document.querySelector('input#descricao'),
+    valor: document.querySelector('input#valor'),
+    data: document.querySelector('input#data'),
+
+    obterValores(){
+        return {
+            descricao: Form.descricao.value,
+            valor: Form.valor.value,
+            data: Form.data.value
+        }
+    },
+    validarCampos(){
+        const { descricao, valor, data } = Form.obterValores()
+        if (descricao.trim() === "" || valor.trim() === "" || data.trim() === "") {
+            throw new Error("Por favor, preencha todos os campos")
+        }
+    },
+    formatarValores() {
+        let { descricao, valor, data } = Form.obterValores()
+        
+        valor = Utils.formatarValores(valor)
+        data = Utils.formatarData(data)
+
+        return {
+            descricao,
+            valor,
+            data
+        }
+    },
+    limparCampos(){
+    
+        Form.descricao.value = ""
+        Form.valor.value = ""
+        Form.data.value = ""
+    },
+    submit(event) {
+        event.preventDefault()
+
+        try {
+            Form.validarCampos()
+            const dadosFormatados = Form.formatarValores(transacao)
+            transacao.add(dadosFormatados)
+            Form.limparCampos()
+            Modal.toogleModal()
+        } catch (error) {
+            alert(error.message)
+        }
+
+
+    }
+}
+
+const App = {
+    iniciar() {    
+        transacao.all.forEach(transacao => {
+            DOM.addTransacao(transacao)
+        });
+
+        DOM.atualizaBalanco()
+    
+    },
+    recarregar() {
+        DOM.limparTransacoes();
+        App.iniciar()
+    }
+}
+
+App.iniciar()
+
