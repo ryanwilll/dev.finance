@@ -200,9 +200,15 @@ FORM
     width: 95%;
     background: white;;
 }
+input[type="date"]:not(.has-value):before{
+    color: #969cb3;
+    content: attr(placeholder);
+}
+
 .input-grupo{
     margin-top: .8rem;
 }
+
 .input-grupo.acoes{
     display: flex;
     align-items: center;
@@ -262,5 +268,8 @@ small{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
+    }
+    input[type="date"]:not(.has-value):before{
+        display: none;
     }
 }
