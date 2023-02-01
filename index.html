@@ -27,19 +27,19 @@
                 <h3><span>Entradas</span>
                     <img src="./src/images/Entradas.svg" alt="Imagem de Entradas">
                 </h3>
-                <p id="entradasDisplay">R$ 17.400,00</p>
+                <p id="entradasDisplay">R$ 0,00</p>
             </div>
             <div class="saida cartao">
                 <h3><span>Saídas</span>
                     <img src="./src/images/Saídas.svg" alt="Imagem de Saídas">
                 </h3>
-                <p id="saidasDisplay">R$ 1.259,00</p>
+                <p id="saidasDisplay">R$ 0,00</p>
             </div>
             <div class="total cartao">
                 <h3><span>Total</span>
                     <img src="./src/images/Total.svg" alt="Imagem de Total">
                 </h3>
-                <p id="total">R$ 16.141,00</p>
+                <p id="total">R$ 0,00</p>
             </div>
         </section>
         <section class="transacoes" id="transacao">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="input-grupo">
                             <label for="data" class="sr-only">Data da Despesa</label>
-                            <input type="date" id="data" name="data" placeholder="01/01/2023">
+                            <input type="date" id="data" name="data" placeholder="01/01/2023" min="2023-01-01">
                         </div>
                         <div class="input-grupo acoes">
                             <a href="#" class="button cancelar" onclick="Modal.toogleModal()">Cancelar</a>
