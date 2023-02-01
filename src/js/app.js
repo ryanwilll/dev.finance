@@ -5,6 +5,7 @@ const Modal = {
     toogleModal(){
         const modalOverlay = document.querySelector('.modal-overlay');
         modalOverlay.classList.toggle("active");
+        Form.limparCampos()
     }
 }
 
