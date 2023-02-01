@@ -8,6 +8,18 @@ const Modal = {
     }
 }
 
+const ArmazenamentoLocal = {
+    pegarInfo() {
+        return JSON.parse(localStorage.getItem('dev.finance:transacoes')) || []
+    },
+    
+    setarInfo(transacao) {
+        localStorage.setItem('dev.finance:transacoes', JSON.stringify(transacao))
+    },
+
+
+}
+
 const transacoes = [
     {
         descricao: "Água",
@@ -27,7 +39,7 @@ const transacoes = [
 ]
 
 const transacao = { 
-    all: transacoes,
+    all: ArmazenamentoLocal.pegarInfo(),
 
     add(Transacao) {
         transacao.all.push(Transacao)
@@ -74,9 +86,10 @@ const DOM = {
         const tr = document.createElement('tr')
         tr.innerHTML = DOM.innerHTMLTransacao(transacoes) 
         DOM.transcaoesContainer.appendChild(tr)
+        tr.dataset.index = index
     },
 
-    innerHTMLTransacao(transacoes){
+    innerHTMLTransacao(transacoes, index){
 
         const CSSclass = transacoes.valor > 0 ? "entrada" : "saida"
 
@@ -88,7 +101,7 @@ const DOM = {
         <td class="${CSSclass}">${valor}</td>
         <td class="data">${transacoes.data}</td>
         <td class="remover"><a href="#">
-                <img src="./src/images/minus.svg" alt="Imagem para remover transação">
+                <img onclick="transacao.remove(${index})" src="./src/images/minus.svg" alt="Imagem para remover transação">
             </a>
         </td>
       </tr>
@@ -188,12 +201,12 @@ const Form = {
 
 const App = {
     iniciar() {    
-        transacao.all.forEach(transacao => {
-            DOM.addTransacao(transacao)
+        transacao.all.forEach((transacao, index) => {
+            DOM.addTransacao(transacao, index)
         });
 
         DOM.atualizaBalanco()
-    
+        ArmazenamentoLocal.setarInfo(transacao.all)
     },
     recarregar() {
         DOM.limparTransacoes();
