@@ -204,8 +204,9 @@ input[type="date"]:not(.has-value):before{
     color: #969cb3;
     content: attr(placeholder);
 }
-input[type="date"].has-value:before{
+input[type="date"]:valid:before{
     visibility: hidden;
+    position: absolute;;
     opacity: 0;
     content: attr(placeholder);
 }
