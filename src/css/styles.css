@@ -204,6 +204,11 @@ input[type="date"]:not(.has-value):before{
     color: #969cb3;
     content: attr(placeholder);
 }
+input[type="date"].has-value:before{
+    visibility: hidden;
+    opacity: 0;
+    content: attr(placeholder);
+}
 
 .input-grupo{
     margin-top: .8rem;
