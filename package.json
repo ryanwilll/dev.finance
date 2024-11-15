@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "live-server --port=8080",
-    "cy:open": "cypress open",
+    "cy:open": "cypress run",
     "test": "concurrently \"npm run start\" \"npm run cy:open\""
   },
   "devDependencies": {
