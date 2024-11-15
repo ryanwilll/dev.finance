@@ -1,8 +1,8 @@
 {
   "scripts": {
     "start": "live-server --port=8080",
-    "cy:open": "cypress run",
-    "test": "concurrently \"npm run start\" \"npm run cy:open\""
+    "test": "cypress run",
+    "testLocal": "concurrently --kill-others \"npm run start\" \"npm run cy:run\""
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
