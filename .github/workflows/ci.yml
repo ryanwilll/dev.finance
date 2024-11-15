@@ -16,5 +16,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run server
+        run: npm run start
+
       - name: Run Cypress tests in headless mode
         run: npm run test
+
+      - name: Stop server
+        run: npm run stop

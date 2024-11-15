@@ -1,12 +1,14 @@
 {
   "scripts": {
-    "start": "live-server --port=8080",
+    "start": "live-server --port=8080 &",
     "test": "cypress run",
-    "testLocal": "concurrently --kill-others \"npm run start\" \"npm run cy:run\""
+    "stop": "kill-port 8080",
+    "testLocal": "concurrently --kill-others \"npm run start\" \"npm run test\""
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
     "cypress": "^13.15.2",
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "kill-port": "^2.0.0"
   }
 }
