@@ -3,6 +3,8 @@
     "start": "live-server --port=8080 &",
     "test": "cypress run",
     "stop": "kill-port 8080",
+    "cypress": "cypress open",
+    "cy:open": "npx run cypress open",
     "testLocal": "concurrently --kill-others \"npm run start\" \"npm run test\""
   },
   "devDependencies": {

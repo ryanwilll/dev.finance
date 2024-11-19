@@ -16,6 +16,19 @@ describe('Create Entry', () => {
       .and('not.have.text', '');
   });
 
+  it.only('create a new entry without all required fields', () => {
+    cy.fillTheForm('Salário', '', '2024-11-11');
+    cy.on('window:alert', (t) => {
+      expect(t).to.contains('Por favor, preencha todos os campos');
+    });
+  });
+});
+
+describe('create a expense', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:8080/');
+  });
+
   it('create new expense', () => {
     cy.fillTheForm('Alimentação', 1200, '2024-11-11');
     cy.get('tbody').find('tr').should('have.length', 1),
