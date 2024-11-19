@@ -16,7 +16,7 @@ describe('Create Entry', () => {
       .and('not.have.text', '');
   });
 
-  it.only('create a new entry without all required fields', () => {
+  it('create a new entry without all required fields', () => {
     cy.fillTheForm('Salário', '', '2024-11-11');
     cy.on('window:alert', (t) => {
       expect(t).to.contains('Por favor, preencha todos os campos');
